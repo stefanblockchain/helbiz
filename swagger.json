@@ -1,0 +1,118 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "FBI witness API",
+        "description": "Allow witnesses to leave contact information related to a particular case.",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Wintesses",
+            "description": "API for witnesses of the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/witnesses": {
+            "get": {
+                "tags": [
+                    "Witnesses"
+                ],
+                "summary": "Get all witnesses in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Witness"
+                        }
+                    }
+                }
+            }
+        },
+        "/witnesses/add": {
+            "post": {
+                "tags": [
+                    "Witnesses"
+                ],
+                "description": "Add new witness in system",
+                "parameters": [
+                    {
+                        "name": "Witness",
+                        "in": "body",
+                        "description": "Data of the witness",
+                        "schema": {
+                            "$ref": "#/definitions/WitnessDTO"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Witness is added",
+                        "schema": {
+                            "$ref": "#/definitions/Witness"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Witness": {
+            "required": [
+                "id",
+                "caseTitle",
+                "phoneNumber",
+                "country"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "caseTitle": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                }
+            }
+        },
+        "Witnesses": {
+            "type": "array",
+            "$ref": "#/definitions/Witness"
+        },
+        "WitnessDTO": {
+            "required": [
+                "caseTitle",
+                "phoneNumber"
+            ],
+            "properties": {
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "caseTitle": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -7,13 +7,13 @@ const witnessService = new WitnessService();
 router.post('/add', async (req, res, next) => {
   try {
     const body = req.body;
-    const saved = await witnessService.addWitness(body.caseTitle, body.phoneNumber,);
+    const saved = await witnessService.addWitness(body.caseTitle, body.phoneNumber);
     res.json(saved);
   }
 
   catch (ex) {
     console.error(ex.message);
-    res.json({ error: ex.message });
+    res.status(400).json({ error: ex.message });
   }
 });
 
@@ -24,9 +24,8 @@ router.get("/", async (req, res, next) => {
   }
   catch (ex) {
     console.error(ex.message);
-    res.json({ error: ex.message });
+    res.status(400).json({ error: ex.message });
   }
 
 });
-
 module.exports = router;
