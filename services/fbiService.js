@@ -1,8 +1,9 @@
 const fetch = require("node-fetch");
+require('dotenv').config();
 
 class FbiService {
-    constructor(url) {
-        this.url = url;
+    constructor() {
+        this.url = process.env.FBI_API_URL || "";
     }
 
     async caseExists(caseTitle) {

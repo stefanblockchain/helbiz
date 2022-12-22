@@ -4,11 +4,9 @@ const WitnessService = require('../services/witnessService');
 
 const witnessService = new WitnessService();
 
-/* GET users listing. */
 router.post('/add', async (req, res, next) => {
   try {
     const body = req.body;
-    //console.log(req.ip);
     const saved = await witnessService.addWitness(body.caseTitle, body.phoneNumber,);
     res.json(saved);
   }

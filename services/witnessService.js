@@ -13,7 +13,7 @@ class WitnessService {
 
         const countryCode = this.getCountryCode(phoneNumber);
 
-        const fbiService = new FbiService("https://api.fbi.gov/wanted/v1");
+        const fbiService = new FbiService();
         const caseExists = await fbiService.caseExists(caseTitle);
         if (!caseExists) throw new Error('Case not exists')
 
